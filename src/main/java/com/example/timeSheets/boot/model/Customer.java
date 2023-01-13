@@ -1,6 +1,8 @@
 package com.example.timeSheets.boot.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 @Getter
@@ -13,6 +15,7 @@ public class Customer {
     @Column(name = "id")
     private Long id;
 
+    @NotBlank
     @Column(name = "name")
     private String name;
 
@@ -22,6 +25,7 @@ public class Customer {
     @Column(name = "phone")
     private String phone;
 
+    @NotNull
     @Column(name = "active")
     private Boolean active;
 
