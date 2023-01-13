@@ -10,6 +10,7 @@
         <module name="timeSheets" />
         <module name="timesheets-api" />
         <module name="controleHoras" />
+        <module name="timesheets-back-end" />
       </profile>
     </annotationProcessing>
   </component>
@@ -18,6 +19,7 @@
       <module name="controleHoras" options="-parameters" />
       <module name="timeSheets" options="-parameters" />
       <module name="timesheets-api" options="-parameters" />
+      <module name="timesheets-back-end" options="-parameters" />
     </option>
   </component>
 </project>

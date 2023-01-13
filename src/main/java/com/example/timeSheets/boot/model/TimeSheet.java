@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -29,20 +30,23 @@ public class TimeSheet {
     @Column(name = "hours_worked")
     private Date hoursWorked;
 
-    @NotNull
     @ManyToOne()
     @JoinColumn(name = "employer_id")
     private Employee employee;
 
-    @NotNull
     @ManyToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @NotNull
-    @ManyToOne()
-    @JoinColumn(name = "project_id")
-    private Project project;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date")
+    private Date date;
+
+    @Column(name = "project_id")
+    private Long projectId;
+
+    @Column(name = "project_name")
+    private String projectName;
     public TimeSheet() {
         this.status = Status.PENDING;
     }
