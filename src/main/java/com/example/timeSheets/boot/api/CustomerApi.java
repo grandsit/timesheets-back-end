@@ -18,6 +18,7 @@ public class CustomerApi {
 
     @PostMapping
     public String save(@RequestBody Customer customer) {
+        service.vinculo(customer.getId());
         service.save(customer);
         return "Customer saved with success";
     }

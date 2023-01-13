@@ -20,6 +20,8 @@ public class CustomerService {
     private CustomerRepository repository;
 
 
+
+
     public void save(Customer customer) {
         repository.save(customer);
 
@@ -40,5 +42,9 @@ public class CustomerService {
 
     public void deleteById(Long customerId) {
         repository.deleteById(customerId);
+    }
+
+    public void vinculo(Long id) {
+
     }
 }
