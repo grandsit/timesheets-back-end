@@ -20,25 +20,11 @@ public class TimeSheetApi {
         service.save(timeSheet);
         return "TimeSheet saved with success";
     }
-
-    @GetMapping("/{timeSheetId}")
-    public Optional<TimeSheet> findtimeSheet(@PathVariable Long timeSheetId) {
-        return service.findTimeSheet(timeSheetId);
+    @GetMapping("/v2")
+    public Page<TimeSheet> getTimeSheets( @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
+                                          @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize ){
+        return service.getTimeSheets(pageNumber, pageSize);
     }
-
-    @GetMapping
-    public Page<TimeSheet> findAllByOrderByIdDesc(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
-                                                  @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize){
-        return service.findAllByOrderByIdDesc(pageNumber, pageSize);
-    }
-
-    @GetMapping("v2")
-    public Page<TimeSheet> findByEmployeeIdOrderByIdDesc(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
-                                            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
-                                            @RequestParam Long employee) {
-        return service.findByEmployeeIdOrderByIdDesc(pageNumber, pageSize,employee);
-    }
-
     @PutMapping
     public String update(@RequestBody TimeSheet timeSheet) {
         service.save(timeSheet);

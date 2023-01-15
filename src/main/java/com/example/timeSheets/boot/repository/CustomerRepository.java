@@ -1,6 +1,7 @@
 package com.example.timeSheets.boot.repository;
 
 import com.example.timeSheets.boot.model.Customer;
+import com.example.timeSheets.boot.model.Project;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,12 +14,12 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    @Query("select c from Customer c where c.name ilike :searchTerm ")
-    List<Customer> findByName(String searchTerm);
-
     @Query(value = "select c from Customer c where c.name ilike :searchTerm")
     Page<Customer> findByNamev2(@Param("searchTerm") String searchTerm, Pageable pageable);
 
+
+    @Query(value ="select p from Project  p where p.id = :id")
+    Customer findCustomerId(@Param("id") Long id);
 }
 
 

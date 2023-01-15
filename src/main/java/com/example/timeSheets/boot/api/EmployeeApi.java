@@ -23,23 +23,25 @@ public class EmployeeApi {
         return "Employee saved with success";
     }
 
-    @GetMapping
-    public ResponseEntity findByName(@RequestParam String searchTerm) {
-        return ResponseEntity.ok(service.findByName(searchTerm));
-    }
-
     @GetMapping("/v2")
     public Page<Employee> findByNamev2(@RequestParam String searchTerm,
                                        @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
                                        @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
-        return service.findByNamev2(pageNumber, pageSize, searchTerm);
+        return service.findByNamev2Employee(pageNumber, pageSize, searchTerm);
     }
 
-    @GetMapping("/{employeeId}")
-    public Optional<Employee> findEmployee(@PathVariable Long employeeId) {
-        return service.findEmployee(employeeId);
+    @GetMapping("/v2/get-list")
+    public Page<Employee> findByNv2Employee(@RequestParam String searchTerm,
+                                            @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
+                                            @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+        return service.findByNv2Employee(pageNumber, pageSize, searchTerm);
     }
 
+//    @GetMapping("/v2/supervisor")
+//    public Page<Employee> findByNamev2Supervidor(@RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
+//                                       @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+//        return service.findByNamev2Supervidor(pageNumber, pageSize, searchTerm);
+//    }
     @PutMapping
     public String update(@RequestBody Employee employee) {
         service.save(employee);

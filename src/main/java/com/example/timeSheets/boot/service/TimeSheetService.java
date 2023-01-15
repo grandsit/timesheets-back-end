@@ -22,22 +22,11 @@ public class TimeSheetService {
         repository.save(timeSheet);
     }
 
-    public Page<TimeSheet> findAllByOrderByIdDesc(int pageNumber,int pageSize){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return repository.findAllByOrderByIdDesc(pageable);
-    }
-
-    public Page<TimeSheet> findByEmployeeIdOrderByIdDesc(int pageNumber, int pageSize, Long employee){
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return repository.findByEmployeeIdOrderByIdDesc(pageable, employee);
-    }
-
-    public Optional<TimeSheet> findTimeSheet(Long timeSheetId) {
-        return repository.findById(timeSheetId);
-    }
-
     public void deleteById(Long timeSheetId) {
         repository.deleteById(timeSheetId);
     }
 
+    public Page<TimeSheet> getTimeSheets(Integer pageNumber, Integer pageSize) {
+       return repository.getTimeSheets(PageRequest.of(pageNumber, pageSize));
+    }
 }

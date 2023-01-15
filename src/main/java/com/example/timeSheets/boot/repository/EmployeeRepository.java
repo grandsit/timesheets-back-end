@@ -13,10 +13,9 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
-    @Query("select c from Employee c where c.name ilike :searchTerm ")
-    List<Employee> findByName(String searchTerm);
-
-    @Query(value = "select c from Employee c where c.name ilike :searchTerm")
-    Page<Employee> findByNamev2(@Param("searchTerm") String searchTerm, Pageable pageable);
+    @Query(nativeQuery = true , value = "select * from employee e where e.supervisor is not true and e.name like :searchTerm")
+    Page<Employee> findByNamev2Employee(@Param("searchTerm") String searchTerm,Pageable pageable);
+   @Query(nativeQuery = true , value = "select * from employee e where e.name like :searchTerm")
+    Page<Employee> findByNv2Employee(@Param("searchTerm") String searchTerm,Pageable pageable);
 
 }

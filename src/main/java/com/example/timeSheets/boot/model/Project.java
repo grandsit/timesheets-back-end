@@ -26,15 +26,11 @@ public class Project {
     @Column(name = "start_date")
     private Date startDate;
 
-    @JoinTable(name = "project_employee",
-    joinColumns = @JoinColumn(name = "project_id"),
-    inverseJoinColumns = @JoinColumn(name = "employee_id"))
-    @ManyToMany
-    private List<Employee> employees;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "end_date")
+    private Date endDate;
 
-    @JoinTable(name = "project_customer",
-            joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "customer_id"))
-    @ManyToMany
-    private List<Customer> customers;
+    @Column(name = "active")
+    private Boolean active;
+
 }

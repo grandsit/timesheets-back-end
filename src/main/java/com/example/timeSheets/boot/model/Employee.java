@@ -6,12 +6,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "employee")
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,11 +29,14 @@ public class Employee {
     private String phone;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private Role role;
-    @NotNull
     @Column(name = "active")
     private Boolean active;
+
+    @OneToMany
+    @JoinColumn(name = "employee_id")
+    private List<Project> projects;
+
+    @Column(name = "supervisor")
+    private Boolean supervisor;
 
 }

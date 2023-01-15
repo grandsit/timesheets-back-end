@@ -30,11 +30,11 @@ public class TimeSheet {
     @Column(name = "hours_worked")
     private Date hoursWorked;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "employer_id")
     private Employee employee;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
@@ -42,11 +42,9 @@ public class TimeSheet {
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "project_id")
-    private Long projectId;
-
-    @Column(name = "project_name")
-    private String projectName;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
     public TimeSheet() {
         this.status = Status.PENDING;
     }

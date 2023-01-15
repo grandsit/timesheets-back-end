@@ -13,9 +13,10 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    @Query("select c from Project c where c.projectName ilike :searchTerm ")
-    List<Project> findByName(String searchTerm);
-
     @Query(value = "select c from Project c where c.projectName ilike :searchTerm")
     Page<Project> findByNamev2(@Param("searchTerm") String searchTerm, Pageable pageable);
+
+
+    @Query(value ="select p from Project  p where p.id = :id")
+    Project findByProjectId(@Param("id") Long id);
 }

@@ -21,12 +21,6 @@ public class ProjectApi {
         service.save(project);
         return "Project saved with success";
     }
-
-    @GetMapping
-    public ResponseEntity findByName(@RequestParam String searchTerm) {
-        return ResponseEntity.ok(service.findByName(searchTerm));
-    }
-
     @GetMapping("/v2")
     public Page<Project> findByNamev2(@RequestParam String searchTerm,
                                       @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
@@ -35,7 +29,7 @@ public class ProjectApi {
     }
 
     @GetMapping("/{projectId}")
-    public Optional<Project> findProject(@PathVariable Long projectId) {
+    public Project findProject(@PathVariable Long projectId) {
         return service.findProject(projectId);
     }
 
