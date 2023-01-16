@@ -18,7 +18,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Page<Customer> findByNamev2(@Param("searchTerm") String searchTerm, Pageable pageable);
 
 
-    @Query(value ="select p from Project  p where p.id = :id")
+    @Query(value ="select c from Customer c where c.id = :id")
     Customer findCustomerId(@Param("id") Long id);
 }
 

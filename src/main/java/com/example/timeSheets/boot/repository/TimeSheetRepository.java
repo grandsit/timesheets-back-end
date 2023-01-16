@@ -15,4 +15,7 @@ public interface TimeSheetRepository extends JpaRepository<TimeSheet, Long> {
 
     @Query(value = "select ts from TimeSheet ts order by id desc")
     Page<TimeSheet> getTimeSheets(Pageable pageable);
+
+    @Query(value = "select count(ts)>0 from TimeSheet ts where ts.project.id = :projectId")
+    Boolean existsProjectById(@Param("projectId") Long projectId);
 }

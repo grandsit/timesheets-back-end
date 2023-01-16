@@ -4,10 +4,7 @@ import com.example.timeSheets.boot.model.Project;
 import com.example.timeSheets.boot.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("project")
@@ -40,8 +37,7 @@ public class ProjectApi {
     }
 
     @DeleteMapping("/{projectId}")
-    public String deleteProject(@PathVariable Long projectId) {
-        service.deleteById(projectId);
-        return "Project " + projectId + " Was deleted";
+    public void deleteProject(@PathVariable Long projectId) {
+         service.deleteById(projectId);
     }
 }

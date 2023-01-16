@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 import java.util.Optional;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 @RestController
 @RequestMapping("customer")
 public class CustomerApi {
@@ -30,6 +32,11 @@ public class CustomerApi {
                                        @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
                                        @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
         return service.findByNamev2(pageNumber, pageSize, searchTerm);
+    }
+
+    @RequestMapping(value = "/{id}", method = GET)
+    public ResponseEntity findbyId(@PathVariable("id") Long id) {
+        return  ResponseEntity.ok(service.findCustomerId(id));
     }
 
     @PutMapping

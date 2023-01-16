@@ -21,11 +21,6 @@ public class CustomerService {
     @Autowired
     private CustomerRepository repository;
 
-    @Autowired
-    private ProjectService projectService;
-
-
-
     public void save(Customer customer) {
         repository.save(customer);
 
@@ -33,6 +28,10 @@ public class CustomerService {
     public Page<Customer> findByNamev2(Integer pageNumber, Integer pageSize, String searchTerm){
         searchTerm = Objects.nonNull(searchTerm) ? searchTerm : "";
       return repository.findByNamev2("%"+searchTerm+"%",PageRequest.of(pageNumber, pageSize));
+    }
+
+    public Customer findCustomerId(Long id){
+        return repository.findCustomerId(id);
     }
 
     public void deleteById(Long customerId) {

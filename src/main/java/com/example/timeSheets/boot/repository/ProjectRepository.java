@@ -19,4 +19,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     @Query(value ="select p from Project  p where p.id = :id")
     Project findByProjectId(@Param("id") Long id);
+
+    @Query(value ="select count(*)> 0 from project p where p.id = :id and p.customer_id is not null",nativeQuery = true)
+    Boolean existsCustomer(@Param("id") Long id);
 }

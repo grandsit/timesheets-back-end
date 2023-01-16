@@ -29,4 +29,8 @@ public class TimeSheetService {
     public Page<TimeSheet> getTimeSheets(Integer pageNumber, Integer pageSize) {
        return repository.getTimeSheets(PageRequest.of(pageNumber, pageSize));
     }
+
+    public Boolean validExistisProject(Long projectId){
+        return repository.existsProjectById(projectId);
+    }
 }

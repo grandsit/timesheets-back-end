@@ -1,18 +1,16 @@
 package com.example.timeSheets.boot.service;
 
 
-import com.example.timeSheets.boot.model.Customer;
 import com.example.timeSheets.boot.model.Project;
 import com.example.timeSheets.boot.repository.ProjectRepository;
+import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,6 +18,8 @@ public class ProjectService {
 
     @Autowired
     private ProjectRepository repository;
+    @Autowired
+    private TimeSheetService timeSheetService;
 
     public void save(Project project) {
         repository.save(project);
@@ -30,7 +30,14 @@ public class ProjectService {
     }
 
     public void deleteById(Long projectId) {
-        repository.deleteById(projectId);
+        if (repository.existsCustomer(projectId)){
+            throw new ValidationException("Projeto vinculado a um cliente");
+        }else if (timeSheetService.validExistisProject(projectId)) {
+            throw new ValidationException("Projeto tem horas lançadas impossivel deletar");
+        }else {
+            repository.deleteById(projectId);
+        }
+
     }
     public Page<Project> findByNamev2(Integer pageNumber, Integer pageSize, String searchTerm){
         searchTerm = Objects.nonNull(searchTerm) ? searchTerm : "";
