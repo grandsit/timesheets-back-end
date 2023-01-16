@@ -38,14 +38,7 @@ public class CustomerApi {
     public ResponseEntity findbyId(@PathVariable("id") Long id) {
         return  ResponseEntity.ok(service.findCustomerId(id));
     }
-
-    @PutMapping
-    public String update(@RequestBody Customer customer) {
-        service.save(customer);
-        return "Customer updated with success";
-    }
-
-    @DeleteMapping("/{customerId}")
+    @RequestMapping(value = "/{customerId}", method = GET)
     public String deleteCustomer(@PathVariable Long customerId) {
         service.deleteById(customerId);
         return "Customer " + customerId + " Was deleted";

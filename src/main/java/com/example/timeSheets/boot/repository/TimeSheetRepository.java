@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TimeSheetRepository extends JpaRepository<TimeSheet, Long> {
 
-
     @Query(value = "select ts from TimeSheet ts order by id desc")
     Page<TimeSheet> getTimeSheets(Pageable pageable);
 

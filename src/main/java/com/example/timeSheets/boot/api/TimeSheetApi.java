@@ -25,12 +25,6 @@ public class TimeSheetApi {
                                           @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize ){
         return service.getTimeSheets(pageNumber, pageSize);
     }
-    @PutMapping
-    public String update(@RequestBody TimeSheet timeSheet) {
-        service.save(timeSheet);
-        return "Time sheet with success";
-    }
-
     @DeleteMapping("/{timeSheetId}")
     public String deletetimeSheet(@PathVariable Long timeSheetId) {
         service.deleteById(timeSheetId);

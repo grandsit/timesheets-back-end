@@ -14,8 +14,10 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
     @Query(nativeQuery = true , value = "select * from employee e where e.supervisor is not true and e.name like :searchTerm")
-    Page<Employee> findByNamev2Employee(@Param("searchTerm") String searchTerm,Pageable pageable);
+    Page<Employee> findByEmployee(@Param("searchTerm") String searchTerm,Pageable pageable);
    @Query(nativeQuery = true , value = "select * from employee e where e.name like :searchTerm")
-    Page<Employee> findByNv2Employee(@Param("searchTerm") String searchTerm,Pageable pageable);
+    Page<Employee> getListEmployee(@Param("searchTerm") String searchTerm,Pageable pageable);
 
+    @Query(nativeQuery = true , value = "select * from employee e where e.supervisor is true and e.name like :searchTerm")
+    Page<Employee> findBySupervidor(@Param("searchTerm") String searchTerm,Pageable pageable);
 }

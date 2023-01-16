@@ -24,30 +24,25 @@ public class EmployeeApi {
     }
 
     @GetMapping("/v2")
-    public Page<Employee> findByNamev2(@RequestParam String searchTerm,
+    public Page<Employee> findByEmployee(@RequestParam String searchTerm,
                                        @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
                                        @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
-        return service.findByNamev2Employee(pageNumber, pageSize, searchTerm);
+        return service.findByEmployee(pageNumber, pageSize, searchTerm);
     }
 
     @GetMapping("/v2/get-list")
-    public Page<Employee> findByNv2Employee(@RequestParam String searchTerm,
+    public Page<Employee> getListEmployee(@RequestParam String searchTerm,
                                             @RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
                                             @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
-        return service.findByNv2Employee(pageNumber, pageSize, searchTerm);
+        return service.getListEmployee(pageNumber, pageSize, searchTerm);
     }
 
-//    @GetMapping("/v2/supervisor")
-//    public Page<Employee> findByNamev2Supervidor(@RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
-//                                       @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
-//        return service.findByNamev2Supervidor(pageNumber, pageSize, searchTerm);
-//    }
-    @PutMapping
-    public String update(@RequestBody Employee employee) {
-        service.save(employee);
-        return "Employee updated with success";
+    @GetMapping("/v2/supervisor")
+    public Page<Employee> findBySupervidor(@RequestParam(name = "pageNumber", defaultValue = "0") Integer pageNumber,
+                                           @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
+                                           @RequestParam String searchTerm) {
+        return service.findBySupervidor(pageNumber, pageSize, searchTerm);
     }
-
     @DeleteMapping("/{employeeId}")
     public String deleteEmployee(@PathVariable Long employeeId) {
         service.deleteById(employeeId);

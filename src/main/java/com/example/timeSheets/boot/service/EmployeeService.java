@@ -21,24 +21,20 @@ public class EmployeeService {
         repository.save(employee);
 
     }
-    public Page<Employee> findByNamev2Employee(Integer pageNumber, Integer pageSize, String searchTerm){
+    public Page<Employee> findByEmployee(Integer pageNumber, Integer pageSize, String searchTerm){
         searchTerm = Objects.nonNull(searchTerm) ? searchTerm : "";
-        return repository.findByNamev2Employee("%"+searchTerm+"%",PageRequest.of(pageNumber, pageSize));
+        return repository.findByEmployee("%"+searchTerm+"%",PageRequest.of(pageNumber, pageSize));
     }
 
-    public Page<Employee> findByNv2Employee(Integer pageNumber, Integer pageSize, String searchTerm){
+    public Page<Employee> getListEmployee(Integer pageNumber, Integer pageSize, String searchTerm){
         searchTerm = Objects.nonNull(searchTerm) ? searchTerm : "";
-        return repository.findByNv2Employee("%"+searchTerm+"%",PageRequest.of(pageNumber, pageSize));
+        return repository.getListEmployee("%"+searchTerm+"%",PageRequest.of(pageNumber, pageSize));
     }
 
-//    public Page<Employee> findByNamev2Supervidor(Integer pageNumber, Integer pageSize, String searchTerm){
-//        searchTerm = Objects.nonNull(searchTerm) ? searchTerm : "";
-//        return repository.findByNamev2Supervidor("%"+searchTerm+"%",PageRequest.of(pageNumber, pageSize));
-//    }
-    public Optional<Employee> findEmployee(Long employeeId) {
-        return repository.findById(employeeId);
+    public Page<Employee> findBySupervidor(Integer pageNumber, Integer pageSize, String searchTerm){
+        searchTerm = Objects.nonNull(searchTerm) ? searchTerm : "";
+        return repository.findBySupervidor("%"+searchTerm+"%",PageRequest.of(pageNumber, pageSize));
     }
-
     public void deleteById(Long employeeId) {
         repository.deleteById(employeeId);
     }
